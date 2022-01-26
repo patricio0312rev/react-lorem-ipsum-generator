@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import text from "./data";
+import data from "./data";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -7,7 +7,14 @@ function App() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('hello world');
+    let amount = parseInt(count);
+    if(count <= 0) {
+      amount = 1;
+    }
+    if(count > 8) {
+      amount = 8;
+    }
+    setText(data.slice(0, amount));
   }
 
   return (
@@ -23,8 +30,11 @@ function App() {
       </form>
 
       <arcile className="lorem-text">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, mollitia! Ipsam enim incidunt quam aspernatur eveniet ut soluta optio! Aspernatur exercitationem dolorem sed illum minima temporibus, libero laboriosam recusandae reiciendis!</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, mollitia! Ipsam enim incidunt quam aspernatur eveniet ut soluta optio! Aspernatur exercitationem dolorem sed illum minima temporibus, libero laboriosam recusandae reiciendis!</p>
+        {
+          text.map((item, key) => {
+            return <p key={key}>{item}</p>
+          })
+        }
       </arcile>
     </section>
   );
